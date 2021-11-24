@@ -8,7 +8,6 @@ package Modelo;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 public class Estructuras {
     private ImageIcon imagen;
@@ -27,6 +26,7 @@ public class Estructuras {
     }
     
     public void cannon(int x, int y){
+        //0
         imagen = new ImageIcon("Cannon.jpg");
         btnEstructura.setIcon(imagen);
         btnEstructura.enableInputMethods(false);
@@ -36,11 +36,12 @@ public class Estructuras {
         tipo = 1;
         btnEstructura.setBounds(x, y, 50, 50);
         btnEstructura.setBackground(Color.red);
-        ThreadCannon threadCannon = new ThreadCannon(this, vida, ataque, danno, posx, posy, pueblo);
+        ThreadEstructuras threadCannon = new ThreadEstructuras(this, vida, ataque, danno, posx, posy, pueblo, 0);
         threadCannon.start();
     }
     
     public void aereos(int x, int y){
+        //1
         imagen = new ImageIcon("Aereo.jpg");
         btnEstructura.setIcon(imagen);
         btnEstructura.enableInputMethods(false);
@@ -50,11 +51,12 @@ public class Estructuras {
         tipo = 1;
         btnEstructura.setBounds(x, y, 50, 50);
         btnEstructura.setBackground(Color.blue);
-        ThreadAereos threadAereos = new ThreadAereos(this, vida, ataque, danno, posx, posy, pueblo);
+        ThreadEstructuras threadAereos = new ThreadEstructuras(this, vida, ataque, danno, posx, posy, pueblo, 1);
         threadAereos.start();
     }
     
     public void bombas(int x, int y){
+        //2
         imagen = new ImageIcon("Mina.jpg");
         btnEstructura.setIcon(imagen);
         btnEstructura.enableInputMethods(false);
@@ -64,11 +66,12 @@ public class Estructuras {
         tipo = 1;
         btnEstructura.setBounds(x, y, 50, 50);
         btnEstructura.setBackground(Color.green);
-        ThreadBombas threadBombas = new ThreadBombas(this, vida, ataque, danno, posx, posy, pueblo);
+        ThreadEstructuras threadBombas = new ThreadEstructuras(this, vida, ataque, danno, posx, posy, pueblo, 2);
         threadBombas.start();
     }
     
     public void mortero(int x, int y){
+        //3
         imagen = new ImageIcon("Mortero.jpg");
         btnEstructura.setIcon(imagen);
         btnEstructura.enableInputMethods(false);
@@ -78,11 +81,12 @@ public class Estructuras {
         tipo = 1;
         btnEstructura.setBounds(x, y, 50, 50);
         btnEstructura.setBackground(Color.orange);
-        ThreadMortero threadMortero = new ThreadMortero(this, vida, ataque, danno, posx, posy, pueblo);
+        ThreadEstructuras threadMortero = new ThreadEstructuras(this, vida, ataque, danno, posx, posy, pueblo, 3);
         threadMortero.start();
     }
     
     public void torre(int x, int y){
+        //4
         imagen = new ImageIcon("Torre.jpg");
         btnEstructura.setIcon(imagen);
         btnEstructura.enableInputMethods(false);
@@ -92,42 +96,46 @@ public class Estructuras {
         tipo = 1;
         btnEstructura.setBounds(x, y, 50, 50);
         btnEstructura.setBackground(Color.magenta);
-        ThreadTorre threadTorre = new ThreadTorre(this, vida, ataque, danno, posx, posy, pueblo);
+        ThreadEstructuras threadTorre = new ThreadEstructuras(this, vida, ataque, danno, posx, posy, pueblo, 4);
         threadTorre.start();
     }
     
     public void muro(int x, int y){
+        //5
         imagen = new ImageIcon("MurosH.jpg");
         btnEstructura.setIcon(imagen);
         btnEstructura.enableInputMethods(false);
         vida = 30;
+        ataque = 0;
         nombre = "Muro";
         tipo = 2;
         btnEstructura.setBounds(x, y, 59, 29);
         btnEstructura.setBackground(Color.black);
-        ThreadMuro threadMuro = new ThreadMuro(this, vida, danno);
+        ThreadEstructuras threadMuro = new ThreadEstructuras(this, vida, ataque, danno, posx, posy, pueblo, 5);
         threadMuro.start();
     }
     
     public void ayuntamiento(int x, int y){
+        //6
         imagen = new ImageIcon("Ayuntamiento.jpg");
         btnEstructura.setIcon(imagen);
         btnEstructura.enableInputMethods(false);
         vida = 35;
+        ataque = 0;
         nombre = "Ayuntamiento";
         tipo = 0;
         btnEstructura.setBounds(x, y, 50, 50);
         btnEstructura.setBackground(Color.cyan);
-        ThreadAyuntamiento threadAyuntamiento = new ThreadAyuntamiento(this, vida, danno);
+        ThreadEstructuras threadAyuntamiento = new ThreadEstructuras(this, vida, ataque, danno, posx, posy, pueblo, 6);
         threadAyuntamiento.start();
     }
 
     public void cambiarImagenRecompensa(int tipo){
         btnEstructura.setEnabled(false);
         if (tipo == 1) {
-            
+            pueblo.getThreadDestruccion().setTotal(1000);
         }else{
-            
+            pueblo.getThreadDestruccion().setTotal(pueblo.getThreadDestruccion().getTotal()+1);
         }
     }
     

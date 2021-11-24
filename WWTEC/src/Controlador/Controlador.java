@@ -26,6 +26,8 @@ public class Controlador{
         modeloP.colocarAyuntamiento(vista);
         modeloP.colocarMuros(vista);
         modeloP.colocarDefensas(vista);
+        modeloP.iniciarDestruccion(vista);
+        //modeloP.porcentajeDestruccion(vista);
         //modeloP.matriz();
     }
 }

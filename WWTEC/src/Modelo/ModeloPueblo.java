@@ -19,6 +19,8 @@ public final class ModeloPueblo {
     private int[] listay;
     private int[] listax2;
     private int[] listay2;
+    private ThreadDestruccion threadDestruccion;
+    private double porcentaje;
     
     public void colocarAyuntamiento(Pantalla vista){
         Estructuras ayuntamiento = new Estructuras(this);
@@ -206,9 +208,34 @@ public final class ModeloPueblo {
             }
         }
     }
+    
+    public void iniciarDestruccion(Pantalla vista){
+        threadDestruccion = new ThreadDestruccion(this, vista);
+        threadDestruccion.start();
+    }
 
+    public void porcentajeDestruccion(Pantalla vista){
+        //crear espacio en pantalla para ver destruccion
+    }
+    
     public Estructuras[][] getMatrizPueblo() {
         return matrizPueblo;
+    }
+
+    public ThreadDestruccion getThreadDestruccion() {
+        return threadDestruccion;
+    }
+
+    public int getCantidadDefensas() {
+        return cantidadDefensas;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public void setPorcentaje(double porcentaje) {
+        this.porcentaje = porcentaje;
     }
     
 }
