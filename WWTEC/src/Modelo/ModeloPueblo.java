@@ -7,6 +7,7 @@ package Modelo;
 
 import Vista.Pantalla;
 import java.util.Random;
+import javax.swing.ImageIcon;
 
 public final class ModeloPueblo {
     
@@ -44,6 +45,8 @@ public final class ModeloPueblo {
                 muros[i].setPosy(3);
             }else if(i>13 && i<=27){
                 muros[i].getPnlEstructura().setBounds(x, y, 29, 39);
+                ImageIcon imagen = new ImageIcon("MurosV.jpg");
+                muros[i].getPnlEstructura().setIcon(imagen);
                 y += 40;
                 matrizPueblo[17][i-11] = muros[i];
                 muros[i].setPosx(17);
@@ -65,6 +68,8 @@ public final class ModeloPueblo {
                     y-=10;
                 }
                 muros[i].getPnlEstructura().setBounds(x, y, 29, 39);
+                ImageIcon imagen = new ImageIcon("MurosV.jpg");
+                muros[i].getPnlEstructura().setIcon(imagen);
                 y -= 40;
                 matrizPueblo[3][i-10-pos] = muros[i];
                 muros[i].setPosx(3);
@@ -89,6 +94,8 @@ public final class ModeloPueblo {
                     x+=30;
                 }
                 muros2[i].getPnlEstructura().setBounds(x, y, 29, 39);
+                ImageIcon imagen = new ImageIcon("MurosV.jpg");
+                muros2[i].getPnlEstructura().setIcon(imagen);
                 y += 40;
                 matrizPueblo[12][7+i] = muros2[i];
                 muros2[i].setPosx(12);
@@ -107,6 +114,8 @@ public final class ModeloPueblo {
                     y-=10;
                 }
                 muros2[i].getPnlEstructura().setBounds(x, y, 29, 39);
+                ImageIcon imagen = new ImageIcon("MurosV.jpg");
+                muros2[i].getPnlEstructura().setIcon(imagen);
                 y -= 40;
                 matrizPueblo[9][17-i] = muros2[i];
                 muros2[i].setPosx(9);
@@ -193,7 +202,7 @@ public final class ModeloPueblo {
                     System.out.println(matrizPueblo[i][j].getNombre());
                 } catch (Exception e) {
                     System.out.println("Null");
-                }//Arreglar matriz
+                }
             }
         }
     }
