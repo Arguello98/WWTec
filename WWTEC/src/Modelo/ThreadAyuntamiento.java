@@ -26,7 +26,7 @@ public class ThreadAyuntamiento extends Thread{
                     vida -=danno;
                 }
                 if (vida<=0) {
-                    estructura.cambiarImagenRecompensa(6);
+                    estructura.cambiarImagenRecompensa(1);
                     stop();
                 }
             } 

@@ -26,7 +26,7 @@ public class ThreadMuro extends Thread{
                     vida -=danno;
                 }
                 if (vida<=0) {
-                    estructura.cambiarImagenRecompensa(5);
+                    estructura.cambiarImagenRecompensa(0);
                     stop();
                 }
             } 

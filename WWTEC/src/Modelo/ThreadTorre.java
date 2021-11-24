@@ -34,7 +34,7 @@ public class ThreadTorre extends Thread{
                     vida -=danno;
                 }
                 if (vida<=0) {
-                    estructura.cambiarImagenRecompensa(4);
+                    estructura.cambiarImagenRecompensa(0);
                     stop();
                 }
                 for (int i = x-7; i < x+7; i++) {

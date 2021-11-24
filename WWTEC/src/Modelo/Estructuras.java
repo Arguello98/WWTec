@@ -123,30 +123,11 @@ public class Estructuras {
     }
 
     public void cambiarImagenRecompensa(int tipo){
-        switch (tipo) {
-            case 0:
-                //cannon
-                break;
-            case 1:
-                //aereos
-                break;
-            case 2:
-                //bombas
-                break;
-            case 3:
-                //mortero
-                break;
-            case 4:
-                //torre
-                break;
-            case 5:
-                //muro
-                break;
-            case 6:
-                //ayuntamiento
-                break;
-            default:
-                break;
+        btnEstructura.setEnabled(false);
+        if (tipo == 1) {
+            
+        }else{
+            
         }
     }
     

@@ -34,18 +34,18 @@ public class ThreadBombas extends Thread{
                     vida -=danno;
                 }
                 if (vida<=0) {
-                    estructura.cambiarImagenRecompensa(2);
-                    stop();
-                }
-                for (int i = x-3; i < x+3; i++) {
-                    for (int j = y-3; j < y+3; j++) {
-                        if ((i>=0 && i<=20) && (j>=0 && j<=20)) {
-                            if (pueblo.getMatrizPueblo()[i][j]!=null) {
-                                //preguntar si es soldado
+                    estructura.cambiarImagenRecompensa(0);
+                    for (int i = x-3; i < x+3; i++) {
+                        for (int j = y-3; j < y+3; j++) {
+                            if ((i>=0 && i<=20) && (j>=0 && j<=20)) {
+                                if (pueblo.getMatrizPueblo()[i][j]!=null) {
+                                    //preguntar si es soldado
+                                }
                             }
                         }
                     }
-                }
+                    stop();
+                }  
             } 
             catch (InterruptedException ex) {
                 

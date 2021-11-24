@@ -34,7 +34,7 @@ public class ThreadMortero extends Thread{
                     vida -=danno;
                 }
                 if (vida<=0) {
-                    estructura.cambiarImagenRecompensa(3);
+                    estructura.cambiarImagenRecompensa(0);
                     stop();
                 }
                 for (int i = x-10; i < x+10; i++) {
