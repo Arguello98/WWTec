@@ -295,7 +295,13 @@ public final class ModeloPueblo {
     }
     //pone el porcentaje de destruccion del pueblo
     public void porcentajeDestruccion(Pantalla vista){
-        //crear espacio en pantalla para ver destruccion
+        //espacio en pantalla para ver destruccion
+        javax.swing.JPanel pnlDestruccion = new javax.swing.JPanel();
+        pnlDestruccion.setBounds(1300, 10, 200, 50);
+        javax.swing.JLabel lblPorcentage = new javax.swing.JLabel();
+        lblPorcentage.setText("Destrucción total: " + porcentaje);
+        pnlDestruccion.add(lblPorcentage);
+        vista.getPnlCampo().add(pnlDestruccion);
     }
     //getter and setter
     public Estructuras[][] getMatrizPueblo() {
