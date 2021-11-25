@@ -175,9 +175,11 @@ public final class ModeloPueblo {
         listay = new int[cantidadDefensas];
         listax2 = new int[cantidadDefensas];
         listay2 = new int[cantidadDefensas];
+        int [] tipos = new int[cantidadDefensas];
         for (int i = 0; i < cantidadDefensas; i++) {
             boolean buscar = true;//true mientras busca una posicion no repetida
             int tipo = random.nextInt(5);//selecciona que defensa va a crear
+            tipos[i] = tipo;
             defensas[i] = new Estructuras(this);
             while(buscar){
                 //pixeles maximos del pueblo y pixeles donde se encuentra la estructura
