@@ -20,7 +20,7 @@ public final class ModeloPueblo {
     private int[] listax2;
     private int[] listay2;
     private ThreadDestruccion threadDestruccion;
-    private double porcentaje;
+    private double porcentaje = 0.0;
     //pone el ayuntamiento en vista
     public void colocarAyuntamiento(Pantalla vista){
         Estructuras ayuntamiento = new Estructuras(this);
@@ -297,7 +297,13 @@ public final class ModeloPueblo {
     }
     //pone el porcentaje de destruccion del pueblo
     public void porcentajeDestruccion(Pantalla vista){
-        //crear espacio en pantalla para ver destruccion
+        //espacio en pantalla para ver destruccion
+        javax.swing.JPanel pnlDestruccion = new javax.swing.JPanel();
+        pnlDestruccion.setBounds(1300, 10, 200, 50);
+        javax.swing.JLabel lblPorcentage = new javax.swing.JLabel();
+        lblPorcentage.setText("Destrucción total: " + porcentaje);
+        pnlDestruccion.add(lblPorcentage);
+        vista.getPnlCampo().add(pnlDestruccion);
     }
     //getter and setter
     public Estructuras[][] getMatrizPueblo() {
