@@ -128,71 +128,115 @@ public final class ModeloPueblo {
     }
     
     public void colocarDefensas(Pantalla vista){
-        cantidadDefensas += (nivel-1);
-        Estructuras defensas[] = new Estructuras[cantidadDefensas];
-        int x = 1;
-        int y = 1;
-        int x2 = 1;
-        int y2 = 1;
-        listax = new int[cantidadDefensas];
-        listay = new int[cantidadDefensas];
-        listax2 = new int[cantidadDefensas];
-        listay2 = new int[cantidadDefensas];
-        for (int i = 0; i < cantidadDefensas; i++) {
-            boolean buscar = true;
-            int tipo = random.nextInt(5);
-            defensas[i] = new Estructuras(this);
-            while(buscar){
-                x = random.nextInt(1105);
-                y = random.nextInt(600);
-                x2 = x/100;
-                y2 = y/100;
-                boolean salir = true;
-                if ((x<605 || x>845) && (y<230 || y>470) && x<1105 && x>385 && y<600 && y>160) {
-                    if (i!=0) {
-                        for (int j = 0; j < listax2.length; j++) {
-                            if (listax2[j]==x2 && listay2[j]==y2) {
-                                salir = false;
-                            }else if ((listax[j]<=x+50 && listax[j]>=x-50) && (listay[j]<=y+50 && listay[j]>=y-50)) {
-                                salir = false;
+        
+        guardarArchivos archivo = OperacionesGuardado.leer("hola");
+        if(archivo == null){
+            cantidadDefensas += (nivel-1);
+            Estructuras defensas[] = new Estructuras[cantidadDefensas];
+            int x = 1;
+            int y = 1;
+            int x2 = 1;
+            int y2 = 1;
+            int []tipos = new int[cantidadDefensas];
+            listax = new int[cantidadDefensas];
+            listay = new int[cantidadDefensas];
+            listax2 = new int[cantidadDefensas];
+            listay2 = new int[cantidadDefensas];
+            for (int i = 0; i < cantidadDefensas; i++) {
+                boolean buscar = true;
+                int tipo = random.nextInt(5);
+                tipos[i] = tipo;
+                defensas[i] = new Estructuras(this);
+                while(buscar){
+                    x = random.nextInt(1105);
+                    y = random.nextInt(600);
+                    x2 = x/100;
+                    y2 = y/100;
+                    boolean salir = true;
+                    if ((x<605 || x>845) && (y<230 || y>470) && x<1105 && x>385 && y<600 && y>160) {
+                        if (i!=0) {
+                            for (int j = 0; j < listax2.length; j++) {
+                                if (listax2[j]==x2 && listay2[j]==y2) {
+                                    salir = false;
+                                }else if ((listax[j]<=x+50 && listax[j]>=x-50) && (listay[j]<=y+50 && listay[j]>=y-50)) {
+                                    salir = false;
+                                }
                             }
                         }
-                    }
-                    if (salir) {
-                        listax[i] = x;
-                        listay[i] = y;
-                        listax2[i] = x2;
-                        listay2[i] = y2;
-                        //System.out.println(x+"--"+y);
-                        //System.out.println(x2+"--"+y2);
-                        matrizPueblo[x2][y2] = defensas[i];
-                        defensas[i].setPosx(x2);
-                        defensas[i].setPosy(y2);
-                        buscar = false;
+                        if (salir) {
+                            listax[i] = x;
+                            listay[i] = y;
+                            listax2[i] = x2;
+                            listay2[i] = y2;
+                            //System.out.println(x+"--"+y);
+                            //System.out.println(x2+"--"+y2);
+                            matrizPueblo[x2][y2] = defensas[i];
+                            defensas[i].setPosx(x2);
+                            defensas[i].setPosy(y2);
+                            buscar = false;
+                        }
                     }
                 }
+                switch (tipo) {
+                    case 0:
+                        defensas[i].cannon(x, y);
+                        break;
+                    case 1:
+                        defensas[i].aereos(x, y);
+                        break;
+                    case 2:
+                        defensas[i].bombas(x, y);
+                        break;
+                    case 3:
+                        defensas[i].mortero(x, y);
+                        break;
+                    case 4:
+                        defensas[i].torre(x, y);
+                        break;
+                    default:
+                        break;
+                }
+
+                vista.getPnlCampo().add(defensas[i].getPnlEstructura());
             }
-            switch (tipo) {
-                case 0:
-                    defensas[i].cannon(x, y);
-                    break;
-                case 1:
-                    defensas[i].aereos(x, y);
-                    break;
-                case 2:
-                    defensas[i].bombas(x, y);
-                    break;
-                case 3:
-                    defensas[i].mortero(x, y);
-                    break;
-                case 4:
-                    defensas[i].torre(x, y);
-                    break;
-                default:
-                    break;
+            archivo = new guardarArchivos(nivel,listax,listax2,listay,listay2,tipos);
+            OperacionesGuardado.guardar("hola", archivo);
+        }
+        else{
+            cantidadDefensas += (archivo.nivel-1);
+            Estructuras defensas[] = new Estructuras[cantidadDefensas];
+            int []tipos = archivo.tipos;
+            listax = archivo.listax;
+            listay = archivo.listay;
+            listax2 = archivo.listax2;
+            listay2 = archivo.listay2;
+            for (int i = 0; i < cantidadDefensas; i++) {
+                defensas[i] = new Estructuras(this);
+                matrizPueblo[listax2[i]][listay2[i]] = defensas[i];
+                defensas[i].setPosx(listax2[i]);
+                defensas[i].setPosy(listay2[i]);
+                switch (tipos[i]) {
+                    case 0:
+                        defensas[i].cannon(listax[i], listay[i]);
+                        break;
+                    case 1:
+                        defensas[i].aereos(listax[i], listay[i]);
+                        break;
+                    case 2:
+                        defensas[i].bombas(listax[i], listay[i]);
+                        break;
+                    case 3:
+                        defensas[i].mortero(listax[i], listay[i]);
+                        break;
+                    case 4:
+                        defensas[i].torre(listax[i], listay[i]);
+                        break;
+                    default:
+                        break;
+                }
+
+                vista.getPnlCampo().add(defensas[i].getPnlEstructura());
             }
-            
-            vista.getPnlCampo().add(defensas[i].getPnlEstructura());
         }
     }
     
