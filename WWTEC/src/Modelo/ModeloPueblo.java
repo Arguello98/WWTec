@@ -20,7 +20,7 @@ public final class ModeloPueblo {
     private int[] listax2;
     private int[] listay2;
     private ThreadDestruccion threadDestruccion;
-    private double porcentaje;
+    private double porcentaje = 0.0;
     //pone el ayuntamiento en vista
     public void colocarAyuntamiento(Pantalla vista){
         Estructuras ayuntamiento = new Estructuras(this);
