@@ -27,9 +27,9 @@ public class ThreadDestruccion extends Thread{
         while(isRunning){
             try {
                 sleep(1000);
-                if (total==1000 || total == totalEstructuras) {
+                if (total==1000 || total == totalEstructuras) {//destruyo el ayuntamiento
                     JOptionPane.showMessageDialog(vista, "Felicidades", "Pueblo Destruido", JOptionPane.INFORMATION_MESSAGE);
-                }else{
+                }else{//obtiene el porcentaje de destruccion
                     porcentaje = total*100/totalEstructuras;
                     pueblo.setPorcentaje(porcentaje);
                 }

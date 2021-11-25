@@ -37,15 +37,15 @@ public class ThreadEstructuras extends Thread{
         while(isRunning){
             try {
                 sleep(1000);
-                if (danno!=0){
+                if (danno!=0){//pierde vida
                     vida -=danno;
                 }
-                if (vida<=0) {
+                if (vida<=0) {//es destruida
                     switch (tipoEstructura) {
-                        case 6:
+                        case 6://es ayuntamiento gana el juego
                             estructura.cambiarImagenRecompensa(1);
                             break;
-                        case 2:
+                        case 2://es bomba explota
                             estructura.cambiarImagenRecompensa(0);
                             for (int i = x-3; i < x+3; i++) {
                                 for (int j = y-3; j < y+3; j++) {
@@ -64,26 +64,27 @@ public class ThreadEstructuras extends Thread{
                     stop();
                 }
                 if (ataque!=0 && tipoEstructura!=2) {
+                    //rango de alcance de las estructuras
                     switch (tipoEstructura) {
-                        case 0:
+                        case 0://cañon
                             iniciox = x-5;
                             finalx = x+5;
                             inicioy = y-5;
                             finaly = y+5;
                             break;
-                        case 1:
+                        case 1://aereo
                             iniciox = x-10;
                             finalx = x+10;
                             inicioy = y-10;
                             finaly = y+10;
                             break;
-                        case 3:
+                        case 3://mortero
                             iniciox = x-10;
                             finalx = x+10;
                             inicioy = y-10;
                             finaly = y+10;
                             break;
-                        case 4:
+                        case 4://torre
                             iniciox = x-7;
                             finalx = x+7;
                             inicioy = y-7;
@@ -92,6 +93,7 @@ public class ThreadEstructuras extends Thread{
                         default:
                             break;
                     }
+                    //ataque
                     for (int i = iniciox; i < finalx; i++) {
                         for (int j = inicioy; j < finaly; j++) {
                             if ((i>=0 && i<=20) && (j>=0 && j<=20)) {
@@ -106,7 +108,7 @@ public class ThreadEstructuras extends Thread{
             catch (InterruptedException ex) {} 
         }
     }
-    
+    //getter and setter
     public int getDanno() {
         return danno;
     }
