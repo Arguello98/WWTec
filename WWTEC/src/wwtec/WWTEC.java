@@ -20,7 +20,6 @@ public class WWTEC {
     public static void main(String[] args) {
         Pantalla vista = new Pantalla();
         ModeloEjercito modeloE = new ModeloEjercito();
-        //Estructuras estructuras = new Estructuras();
         ModeloPueblo modeloP = new ModeloPueblo();
         Controlador controlador = new Controlador(vista, modeloP, modeloE);
         vista.setVisible(true);
