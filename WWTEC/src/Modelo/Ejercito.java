@@ -1,73 +1,43 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Modelo;
-import javax.swing.ImageIcon;
-import static java.lang.Thread.sleep;
+import javax.swing.JButton;
 /**
  *
  * @author tefad
  */
 public abstract class Ejercito extends Thread{
     String nombre;
-    String tipo;
-    ImageIcon Apariencia1;
-    ImageIcon Apariencia2;
     int vida;
-    int golpesXtiempo;
-    int nivel;
     int campos;
-    int nivelAparicion;
-    int costo;
-    int daño=0;
+    int danno=0;
+    int golpesXtiempo;
+    Estructuras[][] matrizPueblo;
+    Ejercito[][] matrizEjercito;
+    public ModeloEjercito ejercito;
+    public javax.swing.JButton pnlEjercito = new javax.swing.JButton();
     
-    public abstract void Moverse();
-    public abstract void Atacar();
     
-    public void recibirDaño(int recibido){
-        this.daño=daño+recibido;
-    }
+    public Ejercito(int x, int y, ModeloEjercito ejercito){
+        this.ejercito = ejercito;
+        this.pnlEjercito.setBounds(x, y, 35, 35);
 
-    public void setCosto(int costo) {
-        this.costo = costo;
     }
+     public void agregados(int vida, int golpesXtiempo, String nombre, String img1, String img2){}
+     
+    
+    //public abstract void Moverse(int x, int y);
+    public abstract void Atacar(int x, int y);
 
-    public int getCosto() {
-        return costo;
-    }
-
-    public void setVida(int vida) {
-        this.vida = vida-daño;
+    public void setMatrizEjercito(Ejercito[][] matrizEjercito) {
+        this.matrizEjercito = matrizEjercito;
     }
 
     public int getVida() {
         return vida;
     }
 
-    public void setApariencia1(ImageIcon Apariencia1) {
-        this.Apariencia1 = Apariencia1;
-    }
-
-    public void setApariencia2(ImageIcon Apariencia2) {
-        this.Apariencia2 = Apariencia2;
-    }
-
-    public void setCampos(int campos) {
-        this.campos = campos;
-    }
-
-    public int getCampos() {
-        return campos;
-    }
-
-    public int getDaño() {
-        return daño;
-    }
-
-    public void setDaño(int daño) {
-        this.daño = daño;
+    public void setVida(int vida) {
+        this.vida = vida;
     }
 
     public String getNombre() {
@@ -78,14 +48,6 @@ public abstract class Ejercito extends Thread{
         this.nombre = nombre;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public int getGolpesXtiempo() {
         return golpesXtiempo;
     }
@@ -94,21 +56,21 @@ public abstract class Ejercito extends Thread{
         this.golpesXtiempo = golpesXtiempo;
     }
 
-    public int getNivel() {
-        return nivel;
+    public int getCampos() {
+        return campos;
     }
 
-    public void setNivel(int nivel) {
-        this.nivel = nivel;
+    public int getDaño() {
+        return danno;
     }
 
-    public int getNivelAparicion() {
-        return nivelAparicion;
+    public void setDaño(int daño) {
+        this.danno += daño;
     }
 
-    public void setNivelAparicion(int nivelAparicion) {
-        this.nivelAparicion = nivelAparicion;
+     public JButton getPnlEjercito() {
+        return pnlEjercito;
     }
-    
     
 }
+

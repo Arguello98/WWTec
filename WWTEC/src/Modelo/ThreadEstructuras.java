@@ -20,6 +20,8 @@ public class ThreadEstructuras extends Thread{
     private int finalx = 0;
     private int inicioy = 0;
     private int finaly = 0;
+    private boolean atacando = false;
+    private ModeloEjercito ejercito;
 
     public ThreadEstructuras(Estructuras estructura, int vida, int ataque, int danno, int x, int y, ModeloPueblo pueblo, int tipoEstructura) {
         this.estructura = estructura;
@@ -50,8 +52,9 @@ public class ThreadEstructuras extends Thread{
                             for (int i = x-3; i < x+3; i++) {
                                 for (int j = y-3; j < y+3; j++) {
                                     if ((i>=0 && i<=20) && (j>=0 && j<=20)) {
-                                        if (pueblo.getMatrizPueblo()[i][j]!=null) {
-                                            //preguntar si es soldado
+                                        if (ejercito.getMatrizEjercito()[i][j]!=null) {
+                                            //preguntar si es soldado y le causa daño
+                                            ejercito.getMatrizEjercito()[i][j].setDaño(ataque);
                                         }
                                     }
                                 }
@@ -73,10 +76,10 @@ public class ThreadEstructuras extends Thread{
                             finaly = y+5;
                             break;
                         case 1://aereo
-                            iniciox = x-10;
-                            finalx = x+10;
-                            inicioy = y-10;
-                            finaly = y+10;
+                            iniciox = 0;
+                            finalx = 20;
+                            inicioy = 0;
+                            finaly = 20;
                             break;
                         case 3://mortero
                             iniciox = x-10;
@@ -97,8 +100,16 @@ public class ThreadEstructuras extends Thread{
                     for (int i = iniciox; i < finalx; i++) {
                         for (int j = inicioy; j < finaly; j++) {
                             if ((i>=0 && i<=20) && (j>=0 && j<=20)) {
-                                if (pueblo.getMatrizPueblo()[i][j]!=null) {
-                                    //preguntar si es soldado
+                                if (tipoEstructura==1) {//es un aereo
+                                    if (ejercito.getMatrizEjercito()[i][j]!=null && "Avion".equals(ejercito.getMatrizEjercito()[i][j].getNombre())) {
+                                        //preguntar si es un avion y le causa daño
+                                        ejercito.getMatrizEjercito()[i][j].setDaño(ataque);
+                                    }
+                                }else{
+                                    if (ejercito.getMatrizEjercito()[i][j]!=null && !"Avion".equals(ejercito.getMatrizEjercito()[i][j].getNombre())) {
+                                        //preguntar si es soldado y le causa daño
+                                        ejercito.getMatrizEjercito()[i][j].setDaño(ataque);
+                                    }
                                 }
                             }
                         }
@@ -116,4 +127,14 @@ public class ThreadEstructuras extends Thread{
     public void setDanno(int danno) {
         this.danno = danno;
     }
+
+    public void setEjercito(ModeloEjercito ejercito) {
+        this.ejercito = ejercito;
+    }
+
+    public int getVida() {
+        return vida;
+    }
+    
+    
 }

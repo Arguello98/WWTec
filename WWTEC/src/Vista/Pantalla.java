@@ -7,7 +7,7 @@ public class Pantalla extends javax.swing.JFrame {
 
     public Pantalla() {
         initComponents();
-        setExtendedState(javax.swing.JFrame.MAXIMIZED_BOTH); 
+        this.setBounds(WIDTH, WIDTH, 770, 770);
     }
 
     @SuppressWarnings("unchecked")
@@ -17,6 +17,7 @@ public class Pantalla extends javax.swing.JFrame {
         pnlCampo = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 735, 735));
 
         pnlCampo.setBackground(new java.awt.Color(102, 153, 0));
 
@@ -24,11 +25,11 @@ public class Pantalla extends javax.swing.JFrame {
         pnlCampo.setLayout(pnlCampoLayout);
         pnlCampoLayout.setHorizontalGroup(
             pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+            .addGap(0, 711, Short.MAX_VALUE)
         );
         pnlCampoLayout.setVerticalGroup(
             pnlCampoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 278, Short.MAX_VALUE)
+            .addGap(0, 377, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

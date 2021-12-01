@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Controlador;
 import Modelo.ModeloEjercito;
 import Modelo.ModeloPueblo;
+import Modelo.guardarArchivos;
 import Vista.Pantalla;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 
 /**
@@ -19,15 +15,23 @@ public class Controlador{
     private Pantalla vista;
     private ModeloPueblo modeloP;
     private ModeloEjercito modeloE;
-    public Controlador(Pantalla vista, ModeloPueblo modeloP, ModeloEjercito modeloE) {
+    private guardarArchivos informacion;
+    
+    public Controlador(Pantalla vista, ModeloPueblo modeloP, ModeloEjercito modeloE, guardarArchivos informacion) {
+        this.informacion = informacion;
         this.vista = vista;
         this.modeloP = modeloP;
         this.modeloE = modeloE;  
+    }
+    
+    public void iniciar(int [] arreglo){
         modeloP.colocarAyuntamiento(vista);
         modeloP.colocarMuros(vista);
         modeloP.colocarDefensas(vista);
-        modeloP.iniciarDestruccion(vista);
+        modeloE.placeEjercito(arreglo, vista, modeloP.getMatrizPueblo(), informacion);
+        modeloP.inciarEstructuras(modeloE);
+        modeloP.iniciarDestruccion(vista, this, modeloE);
         modeloP.porcentajeDestruccion(vista);
-        //modeloP.matriz();
     }
+    
 }
